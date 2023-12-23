@@ -1,6 +1,9 @@
 console.log('utils.js');
 
 async function getAnimeDetails(url) {
+    if (url == window.location.href) {
+        return extractAnimeDetails(document, url)
+    }
     return new Promise(function (resolve, reject) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -11,28 +14,7 @@ async function getAnimeDetails(url) {
                 var fakeDocument = document.createElement('div');
                 fakeDocument.innerHTML = contentHTML;
 
-                let finalEpisode = null;
-                for (const section of fakeDocument.querySelectorAll('.post-content_item')) {
-                    if (section.querySelector('.summary-heading').textContent.trim().startsWith('Episodes')) {
-                        finalEpisode = parseInt(section.querySelector('.summary-content').textContent.trim());
-                        break
-                    }
-                }
-
-                const episodeNumber = fakeDocument.querySelectorAll('.listing-chapters_wrap a').length;
-                const data = {
-                    title: fakeDocument.querySelector('.post-title').textContent.trim(),
-                    home: url,
-                    poster: fakeDocument.querySelector('meta[property="og:image"]').getAttribute('content'),
-                    episode: {
-                        current: null,
-                        finalEpisode: finalEpisode,
-                        number: episodeNumber,
-                        first: fakeDocument.querySelectorAll('.listing-chapters_wrap a')[episodeNumber - 1].getAttribute('href'),
-                        last: fakeDocument.querySelectorAll('.listing-chapters_wrap a')[0].getAttribute('href'),
-                    } 
-                }
-                resolve(data);
+                resolve(extractAnimeDetails(fakeDocument, url));
             } else {
                 reject('La requête a échoué avec le statut : ' + xhr.status);
             }
@@ -44,6 +26,31 @@ async function getAnimeDetails(url) {
 
         xhr.send();
     });
+}
+
+function extractAnimeDetails(fakeDocument, url) {
+    let finalEpisode = null;
+    for (const section of fakeDocument.querySelectorAll('.post-content_item')) {
+        if (section.querySelector('.summary-heading').textContent.trim().startsWith('Episodes')) {
+            finalEpisode = parseInt(section.querySelector('.summary-content').textContent.trim());
+            break
+        }
+    }
+
+    const episodeNumber = fakeDocument.querySelectorAll('.listing-chapters_wrap a').length;
+    const data = {
+        title: fakeDocument.querySelector('.post-title').textContent.trim(),
+        home: url,
+        poster: fakeDocument.querySelector('meta[property="og:image"]').getAttribute('content'),
+        episode: {
+            current: null,
+            finalEpisode: finalEpisode,
+            number: episodeNumber,
+            first: fakeDocument.querySelectorAll('.listing-chapters_wrap a')[episodeNumber - 1].getAttribute('href'),
+            last: fakeDocument.querySelectorAll('.listing-chapters_wrap a')[0].getAttribute('href'),
+        } 
+    }
+    return data
 }
 
 function getEpisodeNumberFromLink(url) {

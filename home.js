@@ -44,7 +44,7 @@ $(async function () {
         newLi.appendChild(newAnchor);
         ulElement.appendChild(newLi);
     }
-    
+
     var urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('filter') == "inprogress") {
         setInProgressMode();
@@ -92,4 +92,5 @@ async function setInProgressMode() {
         element.classList = "";
     })
     document.querySelector('a[data-title="En cours"]').parentElement.classList = 'active';
+    $('.wp-pagenavi *').hide();
 }
