@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "BetterVoirAnime",
+    "version": "2.0",
+    "permissions": ["storage"],
+    "description": "Enregistrer ses animes en cours pour y accéder rapidement",
+    "icons": {
+      "48": "icons/icons128.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*.voiranime.com/*"],
+        "js": ["jquery-3.7.1.js", "anime-storage.js", "utils.js"]
+      },
+      {
+        "matches": ["*://*.voiranime.com/*"],
+        "exclude_matches": ["*://*.voiranime.com/anime/*"],
+        "js": ["home.js"]
+      },
+      {
+        "matches": ["*://*.voiranime.com/anime/*/*/"],
+        "js": ["anime-watch.js"]
+      },
+      {
+        "matches": ["*://*.voiranime.com/*/"],
+        "exclude_matches": ["*://*.voiranime.com/anime/*/*/"],
+        "js": ["anime-details.js"]
+      }
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "voiranime@fiolinkx.com",
+          "strict_min_version": "42.0"
+        }
+      }
+      
+  }
+  
