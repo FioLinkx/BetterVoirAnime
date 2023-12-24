@@ -1,4 +1,3 @@
-console.log('anime-details.js');
 
 $(async function () {
     const animes = await getAnimes();

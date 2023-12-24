@@ -1,4 +1,3 @@
-console.log("home.js");
 
 $(async function () {
     const animes = await getAnimes();
@@ -54,7 +53,6 @@ $(async function () {
 
 async function setInProgressMode() {
     const savedAnimes = await getAnimes();
-    console.log('setInProgressMode', 'savedAnimes', savedAnimes);
     if (!savedAnimes.length) return;
 
     const inProgressAnime = []
@@ -86,6 +84,14 @@ async function setInProgressMode() {
     while (animeList.firstChild) {
         animeList.removeChild(animeList.firstChild);
     }
+
+    // Add action
+    const actionContainer = document.createElement("div");
+    actionContainer.classList = 'page-listing-item'
+    actionContainer.style.display = 'flex'
+    actionContainer.style.justifyContent = 'center';
+    actionContainer.innerHTML = `<div>${savedAnimes.length} Animes en cours</div>`
+    document.querySelector("#loop-content").appendChild(actionContainer);
 
     // Add savedAnime html
     for (let i = 0; i < inProgressAnime.length; i += 2) {

@@ -1,4 +1,3 @@
-console.log('anime-watch.js');
 
 // Correct host select when page reload
 const select = document.querySelector('.single-chapter-select');
@@ -22,9 +21,8 @@ document.querySelector("button.btn").addEventListener("click", function () {
             const animeDetail = await getAnimeDetails(window.location.href.split('/').slice(0, -2).join('/'))
             await addAnime(animeDetail)
         }
-        console.log('Set', title, 'to episode', episode);
         await setAnimeEpisode(title, parseInt(episode))
-    }, 60000 * 1)
+    }, 60000 * 4)
 
     // Control background style
     $('.content-area').css('background-color', '#25242D')

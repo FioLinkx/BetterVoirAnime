@@ -1,4 +1,3 @@
-console.log('anime-storage.js');
 
 async function addAnime(anime) {
     const animes = await browser.storage.local.get('animes');

@@ -1,5 +1,3 @@
-console.log('utils.js');
-
 async function getAnimeDetails(url) {
     if (url == window.location.href) {
         return extractAnimeDetails(document, url)
