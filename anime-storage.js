@@ -38,7 +38,7 @@ async function removeAnime(title) {
 
 async function getAnimes() {
     res = await browser.storage.local.get('animes');
-    return res.animes.filter(a => !a.archive) ?? []
+    return res.animes ? res.animes.filter(a => !a.archive) : []
 }
 
 

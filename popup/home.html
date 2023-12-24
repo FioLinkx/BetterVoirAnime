@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../utils.js"></script>
+    <script src="home.js"></script>
+    <style>
+        body {
+            width: 300px;
+            height: 350px;
+            background-color: #ebebeb;
+            color: white;
+            padding: 0;
+            margin: 0;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
+            font-size: 15px;
+            letter-spacing: 0.7px;
+        }
+        
+        #container {
+            height: calc(85vh - 16px);
+            padding: 8px 0;
+        }
+        #animes {
+            height: 100%;
+            overflow-y: scroll;
+        }
+        .mb-2 {
+            margin-bottom: 8px;
+        }
+        .ml-2 {
+            margin-left: 8px;
+        }
+        .text-lg {
+            font-size: 18px;
+        }
+        .title {
+            color: #7289da;
+        }
+        .link {
+            background-color: #ebebeb;
+            border-radius: 8px;
+            color: #666666;
+            padding: 2px 8px;
+            text-decoration: none;
+            margin-right: 4px;
+        }
+        .item {
+            padding: 4px;
+            margin: 0 8px;
+            border: 1px solid #1a1920;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background-color: #292833;
+        }
+        .logo {
+            height: 15vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1920;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <a href="https://voiranime.com">
+            <img style="height: 10vh;" src="../icons/icons128.png"/>
+        </a>
+    </div>
+    <div id="container">
+        <div id="animes">
+
+        </div>
+    </div>
+</body>
+
+</html>

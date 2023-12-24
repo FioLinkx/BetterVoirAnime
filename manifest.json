@@ -4,7 +4,7 @@
     "version": "2.0",
     "author": "FioLinkx",
     "description": "Enregistrement d'épisode et accès rapide de vos animes en cours",
-    "permissions": ["storage"],
+    "permissions": ["storage", "activeTab"],
     "icons": {
       "48": "icons/icons128.png"
     },
@@ -28,6 +28,13 @@
         "js": ["anime-details.js"]
       }
     ],
+    "action": {
+      "default_title": "BetterVoirAnime",
+      "default_popup": "popup/home.html",
+      "default_icon": {
+        "48": "icons/icons128.png"
+      }
+    },
     "browser_specific_settings": {
         "gecko": {
           "id": "voiranime@fiolinkx.com",
