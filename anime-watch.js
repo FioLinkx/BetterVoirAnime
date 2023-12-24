@@ -8,8 +8,8 @@ for (const option of select.options) {
     };
 }
 
-// Mark anime as in progress when watch episode
 document.querySelector("button.btn").addEventListener("click", function () {
+    // Mark anime as in progress when watch episode
     setTimeout(async function () {
         const title = document.querySelectorAll('.breadcrumb li a')[1].textContent.trim();
         const options = document.querySelectorAll('.single-chapter-select option');
@@ -25,4 +25,10 @@ document.querySelector("button.btn").addEventListener("click", function () {
         console.log('Set', title, 'to episode', episode);
         await setAnimeEpisode(title, parseInt(episode))
     }, 60000 * 1)
+
+    // Control background style
+    $('.content-area').css('background-color', '#25242D')
+    $('.content-area').css('color', 'white')
+    $('.c-sub-header-nav').css('background-color', '#25242D')
+    $('.c-sub-header-nav').css('color', 'white')
 });

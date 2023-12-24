@@ -48,7 +48,8 @@ function extractAnimeDetails(fakeDocument, url) {
             number: episodeNumber,
             first: fakeDocument.querySelectorAll('.listing-chapters_wrap a')[episodeNumber - 1].getAttribute('href'),
             last: fakeDocument.querySelectorAll('.listing-chapters_wrap a')[0].getAttribute('href'),
-        } 
+        },
+        lastExtract: new Date()
     }
     return data
 }

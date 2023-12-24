@@ -52,18 +52,33 @@ $(async function () {
 })
 
 
-
-// TODO fetch tous les animes pour vérifier le dernier episode + verifier si la clé "Episodes" existe
 async function setInProgressMode() {
     const savedAnimes = await getAnimes();
     console.log('setInProgressMode', 'savedAnimes', savedAnimes);
     if (!savedAnimes.length) return;
 
     const inProgressAnime = []
+    var date = new Date();
+    date.setMinutes(date.getMinutes() - 20);
 
+    let change = false;
     // create html with saved anime
     for (const savedAnime of savedAnimes) {
+        // Extract past 20 minute, refetch last episode
+        if (date > savedAnime.lastExtract) {
+            const newData = await getAnimeDetails(savedAnime.home)
+            savedAnime.episode.last = newData.episode.last
+            savedAnime.episode.number = newData.episode.number
+            savedAnime.episode.finalEpisode = newData.episode.finalEpisode
+            savedAnime.lastExtract = new Date()
+            change = true;
+        }
         inProgressAnime.push(makeInProgressAnimeHtml(savedAnime))
+    }
+    if (change) {
+        await browser.storage.local.set({
+            animes: savedAnimes
+        });
     }
 
     // Remove all anime from dom
