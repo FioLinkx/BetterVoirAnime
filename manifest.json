@@ -3,6 +3,7 @@
     "name": "BetterVoirAnime",
     "version": "2.0",
     "author": "FioLinkx",
+    "homepage_url": "https://github.com/FioLinkx/BetterVoirAnime",
     "description": "Enregistrement d'épisode et accès rapide de vos animes en cours",
     "permissions": ["storage", "activeTab"],
     "icons": {
